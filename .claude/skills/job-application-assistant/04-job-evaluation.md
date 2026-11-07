@@ -44,9 +44,9 @@ How well do the required/preferred skills align with the candidate's capabilitie
 | 40-59 | Partial match, significant upskilling needed |
 | 0-39 | Fundamental mismatch |
 
-**Strong match areas:** [YOUR_PRIMARY_SKILLS]
-**Moderate match areas:** [YOUR_SECONDARY_SKILLS]
-**Weak match areas:** [SKILLS_YOU_LACK]
+**Strong match areas:** React, React Native / Expo, TypeScript, JavaScript, Next.js, Node.js, full-stack product ownership
+**Moderate match areas:** Solana/Anchor program development (AI-assisted), Postgres/Supabase, on-chain/off-chain architecture, async data pipeline design
+**Weak match areas:** Deep Rust / low-level protocol engineering, formal people management, roles requiring a CS degree or specific institution pedigree
 
 ### 2. Experience Match (0-100)
 Does work history align with what they're looking for?
@@ -58,9 +58,9 @@ Does work history align with what they're looking for?
 | 40-59 | Adjacent experience, would need to make the case |
 | 0-39 | Unrelated experience |
 
-**Strong:** [YOUR_DIRECT_EXPERIENCE_DOMAINS]
-**Moderate:** [YOUR_ADJACENT_EXPERIENCE]
-**Entry-level:** [ROLES_WITH_LIMITED_EXPERIENCE]
+**Strong:** Product Engineer / Full-Stack Engineer roles at Web3/Solana-native or fintech-adjacent startups; end-to-end feature ownership roles; small high-autonomy teams
+**Moderate:** Founding Engineer roles (strong ownership fit, but earlier-stage risk needs discussing); roles emphasizing frontend craft/UX polish at crypto-adjacent companies
+**Entry-level:** Deep smart-contract / protocol engineering roles (Rust-heavy), formal engineering-management roles
 
 ### 3. Behavioral/Culture Fit (0-100)
 Does the role and company culture match the behavioral profile?
@@ -91,19 +91,20 @@ Does this role advance career goals and contain tasks that energize?
 | 0-39 | Dead end or backwards step |
 
 **Career goals:**
-- [YOUR_CAREER_GOAL_1]
-- [YOUR_CAREER_GOAL_2]
-- [YOUR_CAREER_GOAL_3]
+- Land a role in one of two equal-priority lanes: (1) Product Engineer / full-stack at a Web3-native or fintech-adjacent startup, or (2) Developer Relations / Developer Advocate at a Solana/crypto-native company
+- Continue deepening Solana/on-chain engineering depth on the job, not just through side projects
+- Move from solo independent building into a small high-trust team without losing autonomy
+- For DevRel specifically: use myBoon and the hackathon track record (Magic Bet 2nd, LPCLI 3rd) as proof of both building ability and the ability to explain technical work clearly
 
 **Motivation filter:** Evaluate not just whether you *can* do the tasks, but whether the tasks will *energize* you. Consider:
-- Tasks that energize: [YOUR_ENERGIZING_TASKS]
-- Tasks that drain: [YOUR_DRAINING_TASKS]
-- Non-task factors: leadership style, department culture, company values, degree of autonomy
+- Tasks that energize: owning a feature from idea to shipped, working close to founders/design, building at the intersection of product and on-chain logic
+- Tasks that drain: not explicitly identified — Bibhu reports low reactivity to typical work friction; treat any drain signal that surfaces during evaluation as new information, not something to assume
+- Non-task factors: degree of autonomy, proximity to decision-makers, absence of a heavy PM/process layer
 
 **Life situation alignment:** Consider personal constraints:
-- **Security**: [YOUR_FINANCIAL_SITUATION_CONTEXT]
-- **Flexibility**: [YOUR_SCHEDULE_CONSTRAINTS]
-- **Professional development**: [YOUR_GROWTH_PRIORITIES]
+- **Security**: Currently independent/self-employed; open to trading some independence for team structure if autonomy is preserved
+- **Flexibility**: Fully remote required; based in Hyderabad, India, not seeking relocation
+- **Professional development**: Priority is deepening Solana/on-chain engineering depth; deprioritize roles that would pull back toward pure legacy front-end maintenance work
 
 ### 6. Salary Benchmark (Optional)
 

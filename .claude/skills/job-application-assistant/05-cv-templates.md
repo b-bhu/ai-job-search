@@ -115,12 +115,14 @@ When the role sits outside your home domain, **lead with the domain-transfer arg
 
 **Create 2-3 profile statement templates for your main role types:**
 
-<!-- SETUP: These are populated based on your background -->
-**For [YOUR_PRIMARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_1]
+**For Product Engineer / Full-Stack Web3 roles:**
+> I build context-to-action products for crypto markets — turning scattered signals into remembered context that helps people decide what to do next. Since 2024 I've independently designed and shipped myBoon end-to-end (mobile app, API, data pipeline, Solana transaction parsing), and built two hackathon-placing products (Magic Bet, 2nd place; LPCLI, 3rd place) combining on-chain logic with polished user-facing product. Seven years of prior front-end engineering (React, Angular) underpins the craft; the last two years have been about owning the full arc from problem to shipped feature.
 
-**For [YOUR_SECONDARY_ROLE_TYPE] roles:**
-> [YOUR_PROFILE_STATEMENT_TEMPLATE_2]
+**For general Full-Stack / Frontend Engineer roles:**
+> Full-stack engineer with 7+ years building production React and Angular applications, and two years independently designing and shipping a crypto product end-to-end — architecture, API, data pipeline, and on-chain logic included. Strong TypeScript/React fundamentals paired with genuine product ownership: I've taken ideas from a blank repo to a working, user-facing product without a spec to follow.
+
+**For Developer Relations / Developer Advocate (Solana/crypto) roles:**
+> I build real Solana products and explain how they work — the combination DevRel needs. Since 2024 I've independently shipped myBoon (a full Solana/crypto product, architecture to on-chain logic), and placed 2nd and 3rd in two competitive Solana hackathons (Magic Bet, LPCLI), each requiring me to build fast and communicate the technical approach clearly under time pressure. Seven years of prior front-end engineering means I can talk to developers at their level, not around it — and I build daily with AI-assisted tooling (Claude Code, Codex), which is increasingly core to how Solana developers actually work.
 
 Statements labeled *[Used for: <company>_<role>]* were extracted from archived application drafts by `/setup` Path A. They are **phrasing references, never fact sources**: when drafting from one, every factual claim still comes from `01-candidate-profile.md` - a past tailored draft does not vouch for its own accuracy.
 

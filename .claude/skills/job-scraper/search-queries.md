@@ -1,75 +1,85 @@
 # Search Queries for Job Scraper
 
-<!-- SETUP: Customize these queries based on your skills, target roles, and location -->
+## Discovery channel note (important)
 
-## Installed portal CLIs (primary for `/scrape`)
+Bibhu's target roles (Product Engineer / Web3-fintech, high-ownership remote startups) are frequently posted **directly on X/Twitter by founders**, often before or instead of appearing on any job board. This framework has no X/Twitter search CLI (no public search API without paid/authenticated access), so `/scrape` covers only the **secondary** channel below. The primary channel is manual: Bibhu finds postings on X himself and brings them to `/apply` directly.
 
-`/scrape` discovers every portal skill under `.agents/skills/*/SKILL.md` and runs its CLI first. Shipped country-agnostic CLIs include `linkedin-search` and `freehire-search`; Danish demos and any skill you add with `/add-portal` are included the same way. You do **not** need a matching `site:` line below for those CLIs to run.
+## Installed portal CLIs (secondary for `/scrape`)
 
-The `site:` query templates in this file are the **WebSearch fallback** — for portals without a CLI, company career pages, or when a CLI fails.
+`/scrape` discovers every portal skill under `.agents/skills/*/SKILL.md` and runs its CLI first. Shipped country-agnostic CLIs include `linkedin-search` and `freehire-search`. Danish portal CLIs (jobbank, jobdanmark, jobindex, jobnet) are installed but not relevant to this search (Denmark-specific).
+
+The `site:` query templates below are the **WebSearch fallback** — for portals without a CLI, company career pages, or when a CLI fails.
 
 ## Search Sites
 
-Primary (your market's job boards - scaffold one with `/add-portal`):
-- **[YOUR_JOB_BOARD]** - your market's largest general job board
-- **linkedin.com/jobs** - LinkedIn job listings (filter: [YOUR_COUNTRY] / [YOUR_CITY]); also covered by `linkedin-search` CLI
-- **[YOUR_INDUSTRY_JOB_BOARD]** - a niche/industry board for your field (optional)
-- **[YOUR_ADDITIONAL_JOB_BOARD]** - another major board for your market (optional)
+Primary (secondary channel for this profile):
+- **linkedin.com/jobs** — filter: Remote; also covered by `linkedin-search` CLI
+- **freehire-search** CLI — country-agnostic job aggregation
 
 Secondary (company career pages via Google):
-- Direct Google searches with `site:` filters for known target companies
+- Direct Google searches with `site:` filters for known target companies (e.g. Squads-protocol-adjacent fintechs, Solana-native startups)
 
 ## Query Categories
 
-Queries are grouped by priority. Each query should be combined with your location terms (e.g. your city, region, or metro area) where the site supports it.
+### Priority 1a: Product Engineer / Full-Stack Web3
 
-### Priority 1: [YOUR_PRIMARY_ROLE_TYPE]
-
-These match your strongest and most desired career direction.
+Equal-priority lane #1.
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_KEY_SKILL]" [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_PRIMARY_JOB_TITLE]" [YOUR_COUNTRY]
+site:linkedin.com/jobs "Product Engineer" Solana remote
+site:linkedin.com/jobs "Full-Stack Engineer" Web3 remote
+"Product Engineer" Solana remote hiring
+"Founding Engineer" Solana TypeScript React remote
 ```
 
-### Priority 2: [YOUR_DOMAIN_EXPERTISE]
+### Priority 1b: Developer Relations / Developer Advocate (Solana/crypto)
 
-These match your domain expertise.
-
-```
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] OR [YOUR_REGION]
-site:[YOUR_JOB_BOARD] [YOUR_DOMAIN_KEYWORD_2] [YOUR_COUNTRY]
-site:linkedin.com/jobs [YOUR_DOMAIN_KEYWORD_1] [YOUR_CITY] [YOUR_COUNTRY]
-```
-
-### Priority 3: [YOUR_ADJACENT_ROLE_TYPE]
-
-Adjacent roles you could pivot into.
+Equal-priority lane #2. Bibhu builds real Solana products (myBoon, hackathon placements) and can communicate technical work clearly — a strong DevRel fit.
 
 ```
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_1]" [YOUR_KEY_SKILL] [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "[YOUR_ADJACENT_TITLE_2]" [YOUR_KEY_SKILL] [YOUR_CITY]
+site:linkedin.com/jobs "Developer Relations" Solana remote
+site:linkedin.com/jobs "Developer Advocate" Solana remote
+"Developer Relations engineer" crypto Web3 remote hiring
+"DevRel" Solana remote
 ```
 
-### Priority 4: Broader Technical / Consulting
+### Priority 2: Solana / Crypto Domain
 
-Wider net for general technical roles.
+These match direct domain expertise (on-chain product building, Anchor, Solana infra).
 
 ```
-site:[YOUR_JOB_BOARD] [YOUR_KEY_SKILL] developer [YOUR_CITY]
-site:linkedin.com/jobs "[YOUR_KEY_SKILL] developer" [YOUR_CITY]
-site:[YOUR_JOB_BOARD] "technical consultant" [YOUR_DOMAIN] [YOUR_CITY]
+site:linkedin.com/jobs Solana Anchor TypeScript remote
+"Solana engineer" React remote hiring
+Solana fintech "product engineer" remote
+```
+
+### Priority 3: Adjacent Roles
+
+Roles Bibhu could pivot into using the same skill base.
+
+```
+site:linkedin.com/jobs "Frontend Engineer" crypto remote
+site:linkedin.com/jobs "Full-Stack Engineer" fintech remote
+"Web3 frontend engineer" React remote
+```
+
+### Priority 4: Broader Technical (wider net)
+
+General remote React/TypeScript roles as a fallback.
+
+```
+site:linkedin.com/jobs "React developer" remote TypeScript
+site:linkedin.com/jobs "Full-Stack developer" remote React Node
 ```
 
 ## Location Filter
 
-When evaluating results, verify the job location is within reasonable commute distance from your home. Define acceptable areas:
-- [YOUR_CITY] and surrounding areas
-- [ACCEPTABLE_AREA_1]
-- [ACCEPTABLE_AREA_2]
-- [BORDERLINE_AREA] (borderline - ~X min by transit)
-- [TOO_FAR_AREA] (too far)
+Bibhu is based in Hyderabad, India, and is targeting **fully remote roles only** — no relocation.
+
+- Remote (global or US/EU-friendly time zones): ideal
+- Remote with occasional required overlap hours: acceptable, evaluate case by case
+- Hybrid or in-office (any location): too far / not a fit
+- Relocation required: too far / not a fit
 
 ## Date Filter
 
@@ -78,4 +88,4 @@ Only include jobs posted within the last 14 days, or with an application deadlin
 ## Adapting Queries
 
 If the user specifies a focus area, select queries from the matching category and also generate 2-3 custom queries for that focus. For example:
-- "/scrape [focus_area]" -> relevant category queries + custom focus-specific queries
+- "/scrape founding engineer" -> Priority 1 queries + custom founding-engineer-specific queries

@@ -1,10 +1,7 @@
-# Job Application Assistant for [YOUR_NAME]
-
-<!-- SETUP: This file is populated by running /setup -->
-<!-- After running /setup, all [PLACEHOLDER] tokens will be replaced with your actual information -->
+# Job Application Assistant for Bibhu Padhy
 
 ## Role
-This repo is a job application workspace. Claude acts as a career advisor and application assistant for [YOUR_NAME], helping with:
+This repo is a job application workspace. Claude acts as a career advisor and application assistant for Bibhu Padhy, helping with:
 1. **Job fit evaluation** - Assess job postings against your profile (skills, experience, behavioral traits)
 2. **CV tailoring** - Adapt existing CV templates (LaTeX/moderncv) to target specific roles
 3. **Cover letter writing** - Draft targeted cover letters using existing templates (LaTeX)
@@ -13,70 +10,80 @@ This repo is a job application workspace. Claude acts as a career advisor and ap
 
 ## Candidate Profile
 
-<!-- This section is auto-populated by /setup. You can also fill it in manually. -->
-
 ### Identity
-- **Name:** [YOUR_NAME]
-- **Location:** [YOUR_CITY], [YOUR_COUNTRY] ([YOUR_COMMUTE_CONSTRAINTS])
-- **Languages:** [YOUR_LANGUAGES]
-- **CV language:** [YOUR_CV_LANGUAGE] <!-- English unless your market expects otherwise; /setup asks -->
+- **Name:** Bibhu Padhy
+- **Location:** Hyderabad, India (targeting fully remote roles)
+- **Languages:** English (fluent), Hindi (fluent)
+- **CV language:** English
 
-- **Status:** [YOUR_EMPLOYMENT_STATUS]
-- **LinkedIn headline:** "[YOUR_LINKEDIN_HEADLINE]"
+- **Status:** Independent / self-employed, building crypto products full-time since Aug 2024, open to new roles
+- **LinkedIn headline:** "Product Engineer building context-to-action crypto products on Solana"
+- **Target role lanes (equal priority):** (1) Product Engineer / Full-Stack Web3 Engineer, (2) Developer Relations / Developer Advocate at Solana/crypto-native companies
+- **DeFi / trading background (personal, as a user):** ~4-5 years trading experience overall; ~2 years hands-on in DeFi. Started providing liquidity on PancakeSwap (BSC), moved to Solana as Jupiter grew, now primarily active on Meteora (Solana liquidity/DLMM). This lived-user experience directly informs myBoon's product thesis (reducing FOMO and confusion for users navigating fast-moving markets) and is a genuine, citable credential distinct from the independent building work since Aug 2024 — safe to reference specifically in interviews.
 
 ### Education
-<!-- List your degrees, most recent first -->
-- **[DEGREE_LEVEL] in [FIELD]** ([YEAR_START]-[YEAR_END]) - [INSTITUTION]
-  - Thesis: "[THESIS_TITLE]"
-  - Topics: [KEY_TOPICS]
+- **Bachelor's in Computer Applications** (institution and dates omitted by request — not material to target roles)
 
 ### Professional Experience
-<!-- List your roles, most recent first -->
-- **[JOB_TITLE]** ([START_DATE] - [END_DATE]) - **[COMPANY]** ([LOCATION])
-  - [KEY_RESPONSIBILITY_1]
-  - [KEY_RESPONSIBILITY_2]
-  - [KEY_ACHIEVEMENT]
+- **Independent — Solana / Crypto Products** (Aug 2024 - Present) - Self-employed
+  - Building myBoon: a mobile-first, context-to-action crypto app (Expo/React Native + Next.js + Hono API + Supabase/Postgres monorepo) that turns scattered market signals (Polymarket, perps, wallets) into remembered entity context tied to real actions. Currently pre-beta, in active daily development.
+  - Built a multi-stage async data pipeline (Data Collector -> Researcher -> Editor -> Publisher) for market signal processing, with a Solana transaction-parsing package and an entity-memory store for tracking context over time.
+  - Built Magic Bet (Solana Graveyard Hackathon / MagicBlock): a real-time Anchor-based betting game with on-chain vault/round accounts and MagicBlock Ephemeral Rollups for game execution — **placed 2nd**.
+  - Built LPCLI (Nosana Builders Challenge #4 / ElizaOS): a terminal onboarding flow that swaps SOL to NOS to rent GPU capacity via the Nosana CLI — **placed 3rd**.
+- **Winsupply — Senior Front-End Engineer** (Apr 2023 - Jul 2024) - Hyderabad, India
+  - Built React-based internal tools for product and pricing workflows: spreadsheet-like screens, filters, API-backed views, data-heavy interfaces.
+- **Project10k — Senior Front-End Engineer** (Dec 2021 - Mar 2023)
+  - Built React applications and reusable UI components, including a Firebase-backed chat module with theming support.
+- **RRS Solutions — Front-End Developer** (May 2021 - Nov 2021) - Hyderabad, India
+  - Built React features, Redux Toolkit flows, API integrations, CRUD-heavy business screens.
+- **iCriya — Junior Front-End Developer** (Sep 2017 - May 2021) - Hyderabad, India
+  - Built Angular modules, forms, dashboards, API integrations, business application features.
 
 ### Technical Skills
-- **Primary:** [YOUR_PRIMARY_SKILLS]
-- **Secondary:** [YOUR_SECONDARY_SKILLS]
-- **Domain:** [YOUR_DOMAIN_EXPERTISE]
-- **Software:** [YOUR_TOOLS_AND_SOFTWARE]
+- **Primary:** React, React Native / Expo, TypeScript, JavaScript, Next.js, Solana (Anchor programs, AI-assisted — not deep Rust fluency), wallet integration (Phantom)
+- **Secondary:** Angular, Redux Toolkit, Node.js, Hono, PostgreSQL / Supabase, PLpgSQL, Firebase, CSS
+- **Domain:** Crypto/Web3 product design, on-chain/off-chain architecture, entity/data modeling, async data pipeline design (multi-stage worker systems), monorepo management (pnpm workspaces)
+- **Software:** Claude Code, Codex (AI-assisted development), PM2, VPS deployment, GitHub
 
 ### Certifications
-<!-- List relevant certifications with dates -->
-- **[CERTIFICATION_NAME]** - [HOURS]h - completed [DATE]
+None currently — Solana/crypto skills are self-taught through building (hackathons and shipping myBoon, Magic Bet, LPCLI).
 
 ### Publications
-<!-- List peer-reviewed publications, if any -->
-- [AUTHOR_LIST] ([YEAR]). [TITLE]. [JOURNAL].
+None.
 
 ### Awards
-<!-- List relevant awards, hackathons, competitions -->
-- [AWARD_NAME] - [EVENT] ([YEAR])
+- **2nd place** - MagicBlock / Solana Graveyard Hackathon (Magic Bet) (2025/2026)
+- **3rd place** - Nosana Builders Challenge #4 (LPCLI) (2025/2026)
 
 ### Behavioral Profile
-<!-- Your behavioral assessment results (PI, DISC, Myers-Briggs, or self-assessment) -->
-- **[TRAIT_1]** - [DESCRIPTION]
-- **[TRAIT_2]** - [DESCRIPTION]
-- **Strengths:** [YOUR_STRENGTHS]
-- **Growth areas:** [YOUR_GROWTH_AREAS]
-- **Thrives in:** [YOUR_IDEAL_ENVIRONMENT]
+- **Thrives in ambiguity** - fast-paced, self-directed environments; doesn't need heavy structure to perform
+- **Low reactivity** - reports no significant energy drain from typical work friction; steady under pressure
+- **High ownership** - strongly prefers end-to-end ownership over narrow scoped tasks, evidenced directly by solo-owning myBoon's product design, architecture, infra, and execution
+- **Deliberate decision-making** - even in ambiguous environments, decisions are research-driven rather than purely reactive
+- **Strengths:** end-to-end product ownership, comfortable operating without a PM layer, pairs frontend craft with product/architecture thinking
+- **Growth areas:** deep Rust/protocol-level Solana engineering (currently AI-assisted rather than fluent)
+- **Thrives in:** small, high-trust, high-autonomy remote teams; "product engineer" style roles that own the full arc from problem to shipped feature
 
 ### What Excites You
-<!-- What motivates you professionally -->
-- [PASSION_1]
-- [PASSION_2]
+- End-to-end ownership: taking a feature from rough idea to shipped and owning it after
+- Working close to founders/design without a PM translation layer
+- Building at the intersection of crypto/Solana and real product usage (fintech-adjacent, money-moves-real-value work)
 
 ### Target Sectors
-<!-- Industries and companies you're targeting -->
-- [SECTOR_1]: [EXAMPLE_COMPANIES]
-- [SECTOR_2]: [EXAMPLE_COMPANIES]
+- **Web3 / Solana-native fintech:** companies building on Solana infrastructure (e.g. Squads-protocol-adjacent), prediction markets, on-chain trading/treasury products
+- **Product-engineering-first startups:** small, high-trust remote teams where engineers own problem-to-ship, not ticket queues
+- **Solana / crypto Developer Relations:** companies needing a Developer Advocate / DevRel engineer who can both build (myBoon, hackathon track record) and communicate technical work clearly — equal priority to Product Engineer roles
 
 ### Deal-breakers
-<!-- Hard constraints on job search -->
-- [DEALBREAKER_1]
-- [DEALBREAKER_2]
+None recorded yet — revisit as real postings are evaluated.
+
+### Job Search Notes
+Primary discovery channel is **manual** — target roles (Product Engineer / Web3-fintech) are often posted directly on X/Twitter by founders rather than through job boards or LinkedIn. `/scrape` is configured as secondary coverage via the shipped LinkedIn/freehire CLIs, but the main workflow is: user finds a posting (often via X), then runs `/apply` against it directly. `jobs.solana.com` is also a strong manual source (WebSearch fallback, no CLI) — the Squads/Altitude posting and several DevRel matches came from there.
+
+### Deferred Target: Jito Labs — Senior Frontend Engineer (JTX)
+Real-time trading-terminal frontend role, on-site Utah, $175k-195k. Genuine stretch: requires real-time/data-dense financial UI experience and signing/key-handling security depth that Bibhu's current CV doesn't evidence (prior frontend work is CRUD/business-tool, not trading UI). Mobile experience (Expo/React Native) is a real match. Decision: **hold off applying, build proof-of-work first** rather than apply on promise alone.
+- **Proof-of-work plan:** extend myBoon with a small real-time streaming data view (e.g. a live-updating market/position feed using myBoon's existing signal pipeline as the data source) to demonstrate WebSocket/streaming-UI competence directly, not just claim it.
+- Also unresolved: role appears on-site in Utah, not remote — confirm this before investing further, since remote-only is a stated constraint.
 
 ## Repo Structure
 - `cv/` - LaTeX CV variants (moderncv template, banking style)

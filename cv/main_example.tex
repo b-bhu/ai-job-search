@@ -1,8 +1,7 @@
-%% Example CV - [YOUR_NAME]
+%% Example CV - Bibhu Padhy
 %% Comprehensive overview of all competencies, experience, and achievements.
 %% Use as a master reference when tailoring role-specific CVs.
 %%
-%% SETUP: Run /setup to populate this with your actual information.
 %% Compile with: lualatex main_example.tex
 %% (pdflatex often fails on modern MiKTeX with fontawesome5 font-expansion errors.)
 
@@ -24,18 +23,19 @@
     linkcolor=blue,
     filecolor=magenta,
     urlcolor=blue,
-    pdftitle={[YOUR_NAME] - CV},
+    pdftitle={Bibhu Padhy - CV},
     pdfpagemode=FullScreen,
 }
 \usepackage[scale=0.80]{geometry}
 \usepackage{import}
+\usepackage{needspace}
 
 % personal data
-\name{[First]}{[Last]}
-\address{[Your Address, City, Country]}{}{}
-\phone[mobile]{[+XX XXXXXXXXXX]}
-\email{[your.email@example.com]}
-\extrainfo{\href{[https://linkedin.com/in/your-profile]}{LinkedIn}, \href{[https://github.com/your-username]}{GitHub}}
+\name{Bibhu}{Padhy}
+\address{Hyderabad, India (remote)}{}{}
+\phone[mobile]{+91 7008255263}
+\email{bibhupadhy140@gmail.com}
+\extrainfo{\href{https://linkedin.com/in/bibhupadhy}{LinkedIn}, \href{https://github.com/bucketshop69}{GitHub}}
 
 \begin{document}
 
@@ -46,7 +46,7 @@
 % ============================================================
 
 \vspace{6pt}
-\small{[Write a 3-5 line profile statement tailored to the role you're applying for. Focus on what makes you uniquely qualified. Example: "Data scientist with a PhD in [field] and X years of industry experience. Combines deep domain expertise in [domain] with strong applied machine learning and Python development skills. Experienced in developing end-to-end ML pipelines, from data ingestion to stakeholder-facing dashboards."]}
+\small{I build context-to-action products for crypto markets -- turning scattered signals into remembered context that helps people decide what to do next. Since 2024 I've independently designed and shipped myBoon end-to-end (mobile app, API, data pipeline, Solana transaction parsing), and built two hackathon-placing products (Magic Bet, 2nd place; LPCLI, 3rd place) combining on-chain logic with polished user-facing product. Seven years of prior front-end engineering (React, Angular) underpins the craft; the last two years have been about owning the full arc from problem to shipped feature.}
 
 % ============================================================
 %     CORE COMPETENCIES
@@ -56,15 +56,15 @@
 \vspace{1pt}
 \begin{itemize}
 
-\item \textbf{[Skill Category 1]}: [Specific skills, frameworks, tools. Be concrete.]
+\item \textbf{Full-Stack TypeScript/React}: React, React Native / Expo, Next.js, Node.js, Hono -- production experience across mobile, web, and API layers.
 
-\item \textbf{[Skill Category 2]}: [Specific skills, frameworks, tools.]
+\item \textbf{Solana / Web3}: Anchor program development, on-chain transaction parsing, wallet integration (Phantom), MagicBlock Ephemeral Rollups.
 
-\item \textbf{[Skill Category 3]}: [Specific skills, frameworks, tools.]
+\item \textbf{Product Architecture}: Designed and built a monorepo product end-to-end -- data modeling, async multi-stage pipelines, API design, mobile app.
 
-\item \textbf{[Skill Category 4]}: [Domain expertise, methods, approaches.]
+\item \textbf{Data \& Backend}: PostgreSQL / Supabase, PLpgSQL, async worker pipelines, VPS deployment with PM2.
 
-\item \textbf{[Skill Category 5]}: [Tools, platforms, software.]
+\item \textbf{AI-Assisted Development}: Claude Code and Codex as core parts of daily engineering workflow, including Solana/Anchor program development.
 
 \end{itemize}
 
@@ -77,31 +77,48 @@
 \begin{itemize}
 
 % --- Most Recent Role ---
-\item{\cventry{[YYYY--Present]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{2024--Present}{Independent -- Solana / Crypto Products}{Self-employed}{Remote}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1 - be specific, use numbers where possible]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
-    \item [Achievement or responsibility 4]
+    \item Building \textbf{myBoon} (pre-beta): a mobile-first app turning scattered crypto market signals into remembered entity context tied to real actions -- architected as an Expo/React Native + Next.js + Hono + Supabase monorepo.
+    \item Built a multi-stage async data pipeline (Collector -\/-\/> Researcher -\/-\/> Editor -\/-\/> Publisher) for market signal processing, plus a Solana transaction-parsing package and entity-memory store.
+    \item Built \textbf{Magic Bet} (Anchor program, MagicBlock Ephemeral Rollups, Phantom wallet client) for the Solana Graveyard Hackathon -- \textbf{placed 2nd}.
+    \item Built \textbf{LPCLI}, a SOL-to-GPU-rental CLI onboarding flow, for Nosana Builders Challenge \#4 -- \textbf{placed 3rd}.
 \end{itemize}}}
 
 \vspace{3pt}
 
 % --- Previous Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{2023--2024}{Senior Front-End Engineer}{Winsupply}{Hyderabad, India}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
-    \item [Achievement or responsibility 3]
+    \item Built React-based internal tools for product and pricing workflows.
+    \item Built spreadsheet-like screens, filters, and data-heavy, API-backed views.
 \end{itemize}}}
 
 \vspace{3pt}
 
 % --- Earlier Role ---
-\item{\cventry{[YYYY--YYYY]}{[Job Title]}{[Company]}{[City, Country]}{}{\vspace{1pt}
+\needspace{5\baselineskip}
+\item{\cventry{2021--2023}{Senior Front-End Engineer}{Project10k}{}{}{\vspace{1pt}
 \begin{itemize}
-    \item [Achievement or responsibility 1]
-    \item [Achievement or responsibility 2]
+    \item Built React applications and reusable UI components, including a Firebase-backed chat module with theming support.
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{8\baselineskip}
+\item{\cventry{2021}{Front-End Developer}{RRS Solutions}{Hyderabad, India}{}{\vspace{1pt}
+\begin{itemize}
+    \item Built React features, Redux Toolkit flows, API integrations, and CRUD-heavy business screens.
+\end{itemize}}}
+
+\vspace{3pt}
+
+\needspace{8\baselineskip}
+\item{\cventry{2017--2021}{Junior Front-End Developer}{iCriya}{Hyderabad, India}{}{\vspace{1pt}
+\begin{itemize}
+    \item Built Angular modules, forms, dashboards, API integrations, and business application features.
 \end{itemize}}}
 
 \end{itemize}
@@ -114,14 +131,8 @@
 \vspace{1pt}
 \begin{itemize}
 
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-Thesis: ``[Thesis Title].'' [Brief description of research focus.]
-}}
-
-\vspace{3pt}
-
-\item{\cventry{[YYYY--YYYY]}{[Degree] in [Field]}{[Institution]}{[City, Country]}{}{\vspace{1pt}
-[Brief description or key topics.]
+\item{\cventry{}{Bachelor's in Computer Applications}{}{}{}{\vspace{1pt}
+Core programming and computer science fundamentals underpinning a self-directed transition into full-stack and Solana/Web3 engineering.
 }}
 
 \end{itemize}
@@ -133,27 +144,18 @@ Thesis: ``[Thesis Title].'' [Brief description of research focus.]
 \section{Languages}
 \vspace{1pt}
 \begin{itemize}
-\item [Language 1] (native), [Language 2] (fluent), [Language 3] (intermediate).
+\item English (fluent), Hindi (fluent).
 \end{itemize}
 
 % ============================================================
-%     PUBLICATIONS (optional)
-% ============================================================
-
-\section{Publications}
-\vspace{1pt}
-\begin{itemize}
-\item [Author(s)] ([Year]). [Title]. [Journal/Conference]. \href{[DOI_URL]}{DOI link}
-\end{itemize}
-
-% ============================================================
-%     HONORS AND AWARDS (optional)
+%     HONORS AND AWARDS
 % ============================================================
 
 \section{Honors and Awards}
 \vspace{1pt}
 \begin{itemize}
-\item{\textbf{[Award Name]} -- [Event/Organization] ([Year]).}
+\item{\textbf{2nd Place} -- MagicBlock / Solana Graveyard Hackathon (Magic Bet).}
+\item{\textbf{3rd Place} -- Nosana Builders Challenge \#4 (LPCLI).}
 \end{itemize}
 
 % ============================================================
