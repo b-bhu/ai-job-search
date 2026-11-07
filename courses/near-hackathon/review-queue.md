@@ -1,0 +1,13 @@
+- [ ] Explain back: what does signing prove, and why is the private key never sent?
+- [ ] Explain back: SPL token accounts vs wallet address.
+- [ ] Explain back: full-access vs function-call key on NEAR.
+- [ ] Explain back: why rules in agent code don't protect you if the key leaks.
+- [ ] Explain back: why reads are free but writes need gas + signature (consensus, authorization).
+- [ ] Explain back: why 'bibhu' failed but 'bibhu.testnet' works (who can create which accounts).
+- [ ] Explain back: &self vs &mut self and what it means on-chain.
+- [ ] Revisit: why pay must be a signed call and needs &mut self once it tracks spending.
+- [ ] Explain back: lazy reset and why contracts can't run at midnight on their own.
+- [ ] Explain back: what an intent is, who solvers are, why it beats manual bridging.
+- [ ] Explain back: Intents/1Click vs Chain Signatures — when each fits (swap outcome vs specific program call like Meteora).
+- [ ] Explain back: MPC nodes, key shares, and why one hacked node can't forge a signature (threshold t-of-n).
+- [ ] Explain back: what your NEAR account sends the MPC signer (payload + path; answer was supplied by tutor, not yet shown), and why the Solana address is derived from NEAR account + path.

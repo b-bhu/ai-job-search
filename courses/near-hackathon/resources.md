@@ -1,0 +1,10 @@
+- NEAR contracts quickstart: https://docs.near.org/smart-contracts/quickstart
+- 1Click API quickstart: https://docs.near-intents.org/integration/distribution-channels/1click-api/quickstart/making-a-request
+  - TODO: confirm testnet support before relying on it for practice
+- Chain Signatures implementation: https://docs.near.org/chain-abstraction/chain-signatures/implementation
+- How Chain Signatures work (Near Learn): https://learn.near.mom/learn/chain-abstraction/how-chain-signatures-work
+- Derive foreign addresses: https://learn.near.mom/learn/chain-abstraction/derive-foreign-addresses
+- Example Solana component: https://github.com/near-examples/near-multichain/blob/main/src/components/Solana.jsx
+- MPC signer contracts: mainnet `v1.signer`, testnet `v1.signer-prod.testnet`
+- Solana: keyType Eddsa / domain_id 1; path e.g. `solana-1`; use Solana **devnet** for practice
+- MPC participants/threshold: previously reported ~11 of 17, NOT live-verified (check signer contract `state` view; docs can lag)
