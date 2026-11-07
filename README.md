@@ -4,6 +4,8 @@
 
 # AI Job Search
 
+> Learning tracks and what we are focused on now: [CURRENT-FOCUS.md](CURRENT-FOCUS.md)
+
 *The job search that runs on your machine.*
 
 <p align="center">

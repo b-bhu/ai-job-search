@@ -59,3 +59,9 @@ He pivoted: skip agent for now; first prove bibhu's testnet NEAR account can sen
 
 ## 2026-11-07
 Topic switch: saved interview-practice drill (courses/interview-practice/). No NEAR teaching this entry. Resume point recorded in progress.md.
+
+## 2026-11-07 (2)
+Side inventory of saved learning tracks (no NEAR teaching). Resume point unchanged: explain the `sign` request in plain English, no code.
+
+## 2026-11-07 (3)
+Housekeeping: synced course records to remote and added root CURRENT-FOCUS.md. No teaching. Note: the account actually created after bibhu.testnet was taken is not confirmed in these notes. Resume point unchanged.

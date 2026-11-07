@@ -8,7 +8,7 @@
 Next: Foundation project (Bucket's pick) — NEAR testnet account controls a Solana **devnet** address and sends SOL, no Solana private key. Pending his choice: stick with the 5-step plan, or dig into how the `sign` request looks on NEAR first. Answer given for "what to send MPC": unsigned tx bytes (or message) + path.
 
 ## Resume here (checkpoint 2026-11-07, topic switch to interview practice)
-- Goal: NEAR hackathon. Current step: foundation project — testnet NEAR account (bibhu.testnet) controls a Solana devnet address and sends devnet SOL via Chain Signatures. Still no coding.
+- Goal: NEAR hackathon. Current step: foundation project — testnet NEAR account (exact account name unconfirmed in these notes) controls a Solana devnet address and sends devnet SOL via Chain Signatures. Still no coding.
 - Last exchange: asked what the NEAR account sends the MPC signer. He said "No idea"; tutor supplied the answer (serialized unsigned Solana tx message + derivation path, e.g. "solana-1"). NOT independently demonstrated — stays in review queue.
-- Next: explain how the `sign` request looks on NEAR (plain English, no code), then continue the 5-step plan.
+- Next (unchanged after 2026-11-07 housekeeping): explain how the `sign` request looks on NEAR (plain English, no code), then continue the 5-step plan.
 - MPC threshold: an earlier note said "~11 of 17" live; treat as previously reported, not live-verified. Check the signer contract state before relying on it.

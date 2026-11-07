@@ -1,0 +1,526 @@
+[
+  {
+    "id": "01",
+    "group": "A dependable worker",
+    "title": "The agent's kitchen",
+    "goal": "Explain why a useful environment comes before more agents.",
+    "analogy": "A chef can cook faster in a kitchen with labeled ingredients, working equipment and a way to taste the food. Hiring more chefs does not repair a broken oven.",
+    "predict": "An agent changes a transfer screen and says ‘fixed’. What would help you trust that statement? Give one piece of evidence you would want.",
+    "idea": "You organize the kitchen. The agent does the task inside it. Clear intent, useful tools and observable results let the agent discover whether its work helped.",
+    "nodes": [
+      "Your intent",
+      "Agent + tools",
+      "Observable result",
+      "Your judgment"
+    ],
+    "labels": [
+      "What should happen?",
+      "Can it run the task?",
+      "What actually happened?",
+      "Does the evidence fit?"
+    ],
+    "example": "In a fake MyBoon transfer, the RPC reports failure. The screen must show Failed, preserve the entered amount and offer a safe retry path. A screenshot of that outcome helps us check the claim.",
+    "code": "const fixture = { rpcResult: 'failed' };\nconst expected = { banner: 'Failed', amountKept: true };\n// Compare the observed UI against this expectation.",
+    "exercise": "For a watchlist Save button, name one visible result that would convince you the item was actually saved.",
+    "hint": "Imagine reopening the watchlist. What should still be there?",
+    "transfer": "If the page only displays a green toast, what might remain uncertain?",
+    "source": "Talk 8:37–12:29; interview 11:20–19:22",
+    "kind": "Core",
+    "file": "01-the-agents-kitchen.md"
+  },
+  {
+    "id": "02",
+    "group": "A dependable worker",
+    "title": "A clear target",
+    "goal": "Turn a vague request into observable behavior.",
+    "analogy": "‘Make dinner better’ is hard to check. ‘Serve a warm meal without peanuts’ gives the chef a target and a boundary.",
+    "predict": "What is missing from ‘make the transfer flow reliable’?",
+    "idea": "Name the trigger, expected result and failure behavior. Your experience helps you decide what matters. Give the agent enough intent to make decisions without prescribing every keystroke.",
+    "nodes": [
+      "Trigger",
+      "Expected behavior",
+      "Failure behavior"
+    ],
+    "labels": [
+      "User submits",
+      "Evidence of outcome",
+      "Useful recovery"
+    ],
+    "example": "Trigger: submit a transfer in a local fixture. Success: show the confirmed result. Failure: show an error without erasing the input. A lost response stays uncertain until reconciled.",
+    "code": "type Outcome =\n  | { kind: 'confirmed'; signature: string }\n  | { kind: 'failed'; reason: string }\n  | { kind: 'unknown'; signature?: string };",
+    "exercise": "Write a trigger and expected result for adding a token to a watchlist.",
+    "hint": "Start with ‘When the user…’ and ‘The user can observe…’.",
+    "transfer": "What should happen if saving succeeds but the response never reaches the browser?",
+    "source": "Interview 2:09–10:21, 25:05–32:57",
+    "kind": "Core",
+    "file": "02-a-clear-target.md"
+  },
+  {
+    "id": "03",
+    "group": "A dependable worker",
+    "title": "Correctness and quality",
+    "goal": "Separate behavior that passes from design that remains maintainable.",
+    "analogy": "A meal can be safe to eat and still taste poor. Checking safety alone does not settle whether you want it on the menu.",
+    "predict": "Two fixes pass the same behavioral check. One copies logic into five files. Are they equally good? Why?",
+    "idea": "Correctness asks whether the behavior meets the requirement. Quality asks whether the design fits the codebase and will be understandable to change. Human judgment remains useful for both.",
+    "nodes": [
+      "Behavior check",
+      "Design review",
+      "Useful change"
+    ],
+    "labels": [
+      "Does it work?",
+      "Does it fit?",
+      "Evidence + judgment"
+    ],
+    "example": "A transfer failure banner appears in both fixes. One uses the existing outcome model. The other adds scattered string checks. Passing behavior is evidence, then the review checks duplication and boundaries.",
+    "code": "// Behavior assertion\nexpect(screen.banner).toBe('Failed');\n// Review question: does this use the existing Outcome model?",
+    "exercise": "Name one correctness check and one quality question for a watchlist save fix.",
+    "hint": "Correctness can be observed. Quality often involves how future changes would work.",
+    "transfer": "Could code be neatly organized and still show a false success message? Explain.",
+    "source": "Talk quality/correctness discussion; interview 49:34–51:45",
+    "kind": "Core",
+    "file": "03-correctness-and-quality.md"
+  },
+  {
+    "id": "04",
+    "group": "A dependable worker",
+    "title": "The verification loop",
+    "goal": "Explain the cycle from a change to observed evidence.",
+    "analogy": "A chef tastes the dish, compares it with the intended flavor and adjusts it. Reading the recipe aloud is not tasting.",
+    "predict": "A test expects exactly the string generated by the implementation. What bug might that test miss?",
+    "idea": "Change, run, observe, compare and correct. Anchor the comparison in a user requirement or independent fixture. Tests that repeat the implementation can repeat its mistake.",
+    "nodes": [
+      "Change",
+      "Run",
+      "Observe",
+      "Compare",
+      "Correct"
+    ],
+    "labels": [
+      "Candidate fix",
+      "Real path",
+      "Evidence",
+      "Requirement",
+      "Next attempt"
+    ],
+    "example": "Reproduce the false success banner with a failed-RPC fixture before the fix. Run the same fixture after the fix. Keep the before/after evidence and also check the success path.",
+    "code": "const result = runTransfer({ rpcResult: 'failed' });\nexpect(result.banner).toBe('Failed');\nexpect(result.inputAmount).toBe('0.01');",
+    "exercise": "Describe the before and after observations you would collect for a Save button that loses data on reload.",
+    "hint": "Use the same item and reload action in both observations.",
+    "transfer": "What would you report if the behavioral check passed but the screenshot could not be collected?",
+    "source": "Interview 2:09–10:21, 16:14–19:22",
+    "kind": "Core",
+    "file": "04-the-verification-loop.md"
+  },
+  {
+    "id": "05",
+    "group": "A dependable worker",
+    "title": "A reusable verification tool",
+    "goal": "Recognize which repeated operations belong in a deterministic tool.",
+    "analogy": "An oven thermometer gives the same kind of measurement each time. A chef should not have to invent a temperature-checking ritual for every meal.",
+    "predict": "The agent repeats the same browser clicks after every transfer fix. What part could become a reusable tool?",
+    "idea": "Extract stable setup, actions and evidence collection into an app-specific CLI. A CLI is a command-line tool. Make failure visible with a nonzero exit status. Keep judgment about the requirement outside a blindly repeated script.",
+    "nodes": [
+      "Known fixture",
+      "Stable actions",
+      "Evidence",
+      "Pass / fail"
+    ],
+    "labels": [
+      "Repeatable setup",
+      "UI or API path",
+      "Logs / image",
+      "Honest exit status"
+    ],
+    "example": "A proposed verify command loads a failed-transfer fixture, submits the form, checks the banner and input, and stores evidence. It is a design for a future tool, not a command installed by this course.",
+    "code": "// Proposed contract, pseudocode\nverify('transfer-failure', fixture)\n// returns { passed, observed, evidencePaths }\n// process exits nonzero when a required check fails",
+    "exercise": "Choose one stable browser action and one judgment that should stay with the reviewer.",
+    "hint": "Clicking Submit is stable. Deciding whether the requirement covers every important failure is judgment.",
+    "transfer": "If a tool exits 0 after silently skipping a check, what happens to trust?",
+    "source": "Talk 8:37–12:29; interview 19:39–24:50",
+    "kind": "Core",
+    "file": "05-a-reusable-verification-tool.md"
+  },
+  {
+    "id": "06",
+    "group": "Constraints that help",
+    "title": "Constraints in layers",
+    "goal": "Choose a strong place to enforce a repeated rule.",
+    "analogy": "A kitchen can label a hot surface, but a guard that prevents touching it provides stronger protection. Both can help.",
+    "predict": "An agent repeatedly passes a token amount as a JavaScript number. Where could you prevent that mistake?",
+    "idea": "The talk's hierarchy is codebase patterns, static checks, rules, skills and style guides. Static checks include types, compiler, lint and CI. Put enforceable boundaries in code and checks. Use instructions for context that code cannot express.",
+    "nodes": [
+      "Patterns",
+      "Types / lint / CI",
+      "Rules",
+      "Skills",
+      "Style guide"
+    ],
+    "labels": [
+      "Existing structure",
+      "Enforceable checks",
+      "Working agreement",
+      "Repeatable method",
+      "Presentation choices"
+    ],
+    "example": "A function that accepts only a validated amount type catches many incorrect calls earlier. AGENTS.md explains why that boundary exists. A skill explains how to investigate violations.",
+    "code": "type AtomicAmount = bigint & { readonly __brand: 'AtomicAmount' };\nfunction buildTransfer(amount: AtomicAmount) { /* description only */ }\n// A plain number is not accepted by this signature.",
+    "exercise": "Pick an enforcement layer for ‘every failed transfer must preserve the input’. Explain your choice.",
+    "hint": "Can a behavioral check observe it? Could a shared component make the pattern easier to follow?",
+    "transfer": "Why does a type check alone fail to prove that the error banner appears?",
+    "source": "Talk 16:30–18:30; interview 25:05–32:57",
+    "kind": "Core",
+    "file": "06-constraints-in-layers.md"
+  },
+  {
+    "id": "07",
+    "group": "Constraints that help",
+    "title": "Gardening the codebase",
+    "goal": "Use evidence to remove recurring causes of rework.",
+    "analogy": "A gardener identifies a weed before pulling it. Removing every unfamiliar plant can destroy the garden.",
+    "predict": "You see similar error-handling code in several files. Should an agent immediately rewrite all of it? What evidence would you ask for?",
+    "idea": "Collect examples of a recurring problem, find the shared cause and make a bounded improvement. Prevent new violations while dealing with old ones gradually. Do not turn an aesthetic suspicion into a broad refactor.",
+    "nodes": [
+      "Observed failures",
+      "Shared cause",
+      "Bounded fix",
+      "Prevent recurrence"
+    ],
+    "labels": [
+      "Real evidence",
+      "Explain the link",
+      "Small reviewable change",
+      "Pattern or check"
+    ],
+    "example": "Three false-success reports come from the same outcome mapper. Fixing that mapper and adding a fixture check addresses the shared cause. Rewriting unrelated screens adds risk without evidence.",
+    "code": "const reports = ['screen A', 'screen B', 'screen C'];\n// Trace each report to the outcome mapper before changing it.",
+    "exercise": "Describe one piece of evidence that would justify a shared fix instead of three separate fixes.",
+    "hint": "Look for the same function or boundary in each reproduction.",
+    "transfer": "If an old violation remains, how could you stop new violations without blocking every change?",
+    "source": "Talk 24:30–26:41; interview 45:51–48:59",
+    "kind": "Core",
+    "file": "07-gardening-the-codebase.md"
+  },
+  {
+    "id": "08",
+    "group": "Preserving structure",
+    "title": "The smallest adequate language",
+    "goal": "Keep meaningful structure until execution needs a lower-level form.",
+    "analogy": "A recipe preserves ingredients and steps. A recording of hand movements is harder to inspect and edit as a recipe.",
+    "predict": "Which is easier to validate: an arbitrary instruction string or a structured transfer description with named fields?",
+    "idea": "Choose the least powerful representation that still describes the task. Arbitrary strings and commands allow many things, which makes reasoning harder. Structured descriptions can retain information for validation, analysis and multiple interpreters.",
+    "nodes": [
+      "Structured intent",
+      "Validation",
+      "Execution form"
+    ],
+    "labels": [
+      "Meaning retained",
+      "Rules inspect fields",
+      "Lower level when needed"
+    ],
+    "example": "Represent a proposed transfer as fields before producing transaction bytes. The same description can drive a preview, validation and a fake executor. It does not grant permission to sign or send.",
+    "code": "type TransferIntent = {\n  recipient: ValidatedAddress;\n  amount: AtomicAmount;\n};\n// Type names stand for validated boundaries, explained next.",
+    "exercise": "Describe a watchlist action as named fields rather than an arbitrary command string.",
+    "hint": "What action and token identity would the description need?",
+    "transfer": "What information becomes harder to recover after compiling source code into lower-level instructions?",
+    "source": "Runar 0:51–5:20, 8:35–14:48, 34:25–35:19",
+    "kind": "Core",
+    "file": "08-the-smallest-adequate-language.md"
+  },
+  {
+    "id": "09",
+    "group": "Preserving structure",
+    "title": "Exact amounts and honest boundaries",
+    "goal": "Explain exact representation and runtime validation.",
+    "analogy": "A measuring cup marked in whole units preserves an exact count. Rounding it early can lose a distinction you need later.",
+    "predict": "Why could converting an exact token amount into an ordinary floating-point number too early be a problem?",
+    "idea": "Preserve exact token units and validate data when it enters from outside. Semantic types distinguish an address from an unrelated string. TypeScript annotations disappear at runtime, so RPC data still needs parsing and checks. A cast alone does not validate anything.",
+    "nodes": [
+      "External data",
+      "Runtime parser",
+      "Semantic value",
+      "App logic"
+    ],
+    "labels": [
+      "Untrusted shape",
+      "Check shape + meaning",
+      "Amount / address",
+      "Known contract"
+    ],
+    "example": "For SOL, 0.01 SOL corresponds to 10,000,000 lamports. Token decimal counts vary. Keep integer units as bigint and format only for display. The example parser below checks decimal digits only and leaves upper bounds to the real boundary.",
+    "code": "function parseUnits(raw: unknown): bigint {\n  if (typeof raw !== 'string' || !/^[0-9]+$/.test(raw))\n    throw new Error('Expected whole units');\n  return BigInt(raw);\n}",
+    "exercise": "An RPC returns amount = 'banana'. At which boundary should you reject it, and why?",
+    "hint": "Before app logic treats it as a valid amount.",
+    "transfer": "Does ‘raw as AtomicAmount’ prove the value has been checked? Explain.",
+    "source": "Runar 6:10–8:33, 11:21–14:48; TypeScript/Solana example is our adaptation",
+    "kind": "Core",
+    "file": "09-exact-amounts-and-honest-boundaries.md"
+  },
+  {
+    "id": "10",
+    "group": "Preserving structure",
+    "title": "Descriptions and effects",
+    "goal": "Separate planning a transaction from performing it.",
+    "analogy": "Writing a shopping list is different from paying at the checkout. You can inspect the list before spending anything.",
+    "predict": "If a transaction simulates successfully, does that guarantee the later live transaction succeeds?",
+    "idea": "An effect changes or interacts with the outside world. Keep pure descriptions separate from construction, simulation, signing and submission. Simulation supplies evidence under its conditions. State can change before submission and confirmation. Give each executor only the capabilities its task needs. A preview function should not have a signing capability.",
+    "nodes": [
+      "Intent",
+      "Construct",
+      "Simulate",
+      "Authorize + sign",
+      "Submit + observe"
+    ],
+    "labels": [
+      "Description",
+      "Unsigned bytes",
+      "Evidence",
+      "Explicit boundary",
+      "Outcome or uncertainty"
+    ],
+    "example": "A mock executor can reject a transfer and let the UI demonstrate recovery. A real executor requires separate authorization. Submitted, confirmed, failed and unknown describe different states and should not collapse into one green banner.",
+    "code": "type TxState =\n  | { kind: 'draft' }\n  | { kind: 'submitted'; signature: string }\n  | { kind: 'confirmed'; signature: string }\n  | { kind: 'failed'; reason: string }\n  | { kind: 'unknown'; signature?: string };",
+    "exercise": "Place ‘show a preview’ and ‘send a signed transaction’ on opposite sides of the effect boundary.",
+    "hint": "Which action can change an external account state?",
+    "transfer": "What should the UI communicate if submission may have succeeded but observation timed out?",
+    "source": "Runar 4:00–5:20, 27:11–30:48; interview 55:44–59:26; lifecycle is our adaptation",
+    "kind": "Core",
+    "file": "10-descriptions-and-effects.md"
+  },
+  {
+    "id": "11",
+    "group": "Preserving structure",
+    "title": "Pure functions and constrained types",
+    "goal": "Understand when a function is easier to reason about.",
+    "analogy": "A labeled conversion table gives the same output for the same input. A cook who secretly changes the pantry adds hidden context.",
+    "predict": "Which is easier to check: a fee calculation using only its inputs, or one that reads a changing global variable?",
+    "idea": "A pure function returns from its inputs without hidden effects. Under purity, totality and parametricity, a generic A → A has very limited behavior. Total means it returns for every allowed input. TypeScript can throw, loop forever, use casts or access globals, so its signature alone does not establish those guarantees.",
+    "nodes": [
+      "Explicit input",
+      "Pure calculation",
+      "Explicit output"
+    ],
+    "labels": [
+      "All needed data",
+      "No hidden effects",
+      "Substitution works"
+    ],
+    "example": "Calculate a preview from supplied integer units and fee units. Fetch the current fee outside that calculation. This makes the arithmetic independently checkable.",
+    "code": "function remaining(balance: bigint, amount: bigint, fee: bigint) {\n  return balance - amount - fee;\n}\n// Caller separately validates nonnegative values and affordability.",
+    "exercise": "Name a hidden dependency you would move into an input for a watchlist filter.",
+    "hint": "Consider the current time, user settings or network response.",
+    "transfer": "Can function identity<A>(a: A): A throw an error in TypeScript despite its signature?",
+    "source": "Runar 15:01–17:29, 27:11–29:08",
+    "kind": "Core",
+    "file": "11-pure-functions-and-constrained-types.md"
+  },
+  {
+    "id": "12",
+    "group": "Preserving structure",
+    "title": "Independent and dependent work",
+    "goal": "Recognize mapping, independent combination and dependent sequencing.",
+    "analogy": "You can chop carrots and wash lettuce independently. Baking depends on having the batter first.",
+    "predict": "Can you fetch two unrelated account summaries independently? Can you confirm a transaction before obtaining its signature?",
+    "idea": "A functor maps over values in a context. An applicative combines work whose structure is independent. A monad sequences work when later work depends on earlier results. These are patterns with laws, not names for every loop or promise. Nested applicatives compose generically. Arbitrary monads need additional structure to compose.",
+    "nodes": [
+      "Map",
+      "Combine independently",
+      "Sequence dependently"
+    ],
+    "labels": [
+      "Change values in context",
+      "Inputs do not choose each other",
+      "Next step uses prior result"
+    ],
+    "example": "Map amounts to display strings. Fetch two independent mock account summaries together. Observe a submitted transaction using the signature returned by submission. Real submission stays behind authorization.",
+    "code": "const labels = [10n, 20n].map(String);\nconst [a, b] = await Promise.all([readMockA(), readMockB()]);\nconst sig = await mockSubmit(intent);\nconst outcome = await mockObserve(sig);",
+    "exercise": "Classify formatting a list, reading two independent fixtures, and observing a returned signature.",
+    "hint": "Ask whether the next action needs a value from an earlier action.",
+    "transfer": "Why is nesting any two effectful abstractions not automatically enough to combine them safely?",
+    "source": "Runar 17:31–22:56, 23:00–29:08",
+    "kind": "Deeper track",
+    "file": "12-independent-and-dependent-work.md"
+  },
+  {
+    "id": "13",
+    "group": "Preserving structure",
+    "title": "Objects and descriptions",
+    "goal": "Build intuition for abstractions without losing track of what they omit.",
+    "analogy": "Many different chairs fit the description ‘has four legs’. The description does not uniquely identify one chair.",
+    "predict": "If two implementations match the same description, must they be identical?",
+    "idea": "A Galois connection relates ordered concrete and abstract views. Think about objects that satisfy a description and descriptions that fit objects. This is not a one-to-one pairing. More specific descriptions generally admit fewer objects. Currying turns multiple arguments into a sequence of one-argument functions. A list is a free monoid: elements can be combined by concatenation with an empty-list identity. A free construction adds only the structure needed for its laws. A forgetful view omits that structure.",
+    "nodes": [
+      "Concrete objects",
+      "Abstraction",
+      "Descriptions",
+      "Allowed objects"
+    ],
+    "labels": [
+      "Several implementations",
+      "Properties retained",
+      "What we can say",
+      "May include many"
+    ],
+    "example": "‘Shows failure and keeps the input’ admits many UI implementations. A detailed screenshot is more specific but still does not prove every runtime behavior. Choose an abstraction that retains what the check needs.",
+    "code": "const byStatus = (status: string) => (item: { status: string }) =>\n  item.status === status; // curried predicate\nconst combined = [...['A'], ...['B']]; // concatenation\n// [] is the identity for list concatenation.",
+    "exercise": "Name a detail lost when a screenshot is reduced to ‘the page looked correct’.",
+    "hint": "Consider the exact error text, input value or disabled button state.",
+    "transfer": "Does matching a description prove that no other implementation could match it?",
+    "source": "Runar 35:22–43:18, 43:18–47:56. See sources.md for correction and formal-detail limits.",
+    "kind": "Deeper track",
+    "file": "13-objects-and-descriptions.md"
+  },
+  {
+    "id": "14",
+    "group": "Reliable orchestration",
+    "title": "The inner and outer loops",
+    "goal": "Separate execution of one task from selecting and updating work.",
+    "analogy": "A chef follows one order while the kitchen manager watches new orders, shortages and feedback.",
+    "predict": "While an agent fixes one bug, a new report changes the priority. Which loop handles that new context?",
+    "idea": "The inner loop works on a bounded task snapshot. The outer loop watches evolving context, chooses work and updates priorities. Incoming Slack, Sentry or monitoring signals are examples of sources, not permissions or integrations created by this course.",
+    "nodes": [
+      "Incoming evidence",
+      "Outer loop",
+      "Task snapshot",
+      "Inner loop",
+      "Result"
+    ],
+    "labels": [
+      "New context",
+      "Select / update",
+      "Scope + acceptance",
+      "Fix + verify",
+      "Review / feed back"
+    ],
+    "example": "A mock failure report becomes a scoped task with a fixture and expected banner. The worker verifies that task. A later report can cause the manager to revise the queue instead of silently changing a running worker's assumptions.",
+    "code": "type Task = {\n  id: string; scope: string;\n  expectedBehavior: string; fixture: string;\n}; // A snapshot supplied to one worker",
+    "exercise": "Which loop owns ‘choose the next bug’ and which owns ‘run the failure fixture’?",
+    "hint": "One chooses work. One performs the chosen task.",
+    "transfer": "What could go wrong if the worker's acceptance condition silently changes halfway through?",
+    "source": "Talk 32:36–35:12; interview 34:36–39:48",
+    "kind": "Core",
+    "file": "14-the-inner-and-outer-loops.md"
+  },
+  {
+    "id": "15",
+    "group": "Reliable orchestration",
+    "title": "Coordinators and ownership",
+    "goal": "Understand when grouping reports and isolating work helps.",
+    "analogy": "A kitchen manager notices that five bad dishes share one faulty oven. Assigning five chefs to repair the same oven creates collisions.",
+    "predict": "Five reports look similar. What would justify creating one task instead of five?",
+    "idea": "A coordinator groups evidence that shares a cause and assigns bounded work. Clear ownership, a queue and isolated checkouts reduce collisions. Increase the number of workers only after one worker produces useful verified results. Coordination has token and review costs.",
+    "nodes": [
+      "Reports",
+      "Cause grouping",
+      "Owned task",
+      "Isolated worker",
+      "Review"
+    ],
+    "labels": [
+      "Preserve evidence",
+      "Require a real link",
+      "One responsible owner",
+      "Separate checkout",
+      "Evidence + diff"
+    ],
+    "example": "Failure reports from two screens trace to one mapper. One worker owns the mapper change. Another can work on an unrelated fixture in its own checkout. They need an explicit plan if both must touch shared files.",
+    "code": "const workItem = {\n  id: 'mapper-failure', owner: 'worker-1',\n  affectedReports: ['A', 'B'], scope: 'outcome mapper'\n};",
+    "exercise": "What evidence would you require before grouping two transfer bugs?",
+    "hint": "Similar wording alone is weak. Trace the runtime path or shared cause.",
+    "transfer": "Why can adding workers increase your intervention burden?",
+    "source": "Interview 40:49–45:07, 51:55–54:42; ownership/checkouts are our adaptation",
+    "kind": "Core",
+    "file": "15-coordinators-and-ownership.md"
+  },
+  {
+    "id": "16",
+    "group": "Reliable orchestration",
+    "title": "Skills from real corrections",
+    "goal": "Turn a recurring correction into a reusable procedure.",
+    "analogy": "After burning several batches, the chef writes a tested oven procedure. A cookbook full of untried advice is less dependable.",
+    "predict": "You corrected the same verification omission three times. What should a useful skill record?",
+    "idea": "Mine skills from real interventions and recall. Record the trigger, required evidence, steps and stopping conditions. Keep the strongest enforceable rules in types or checks. pstack supplies reusable workflows. Dune is the speaker's private framework, so it is not a public dependency to install.",
+    "nodes": [
+      "Real correction",
+      "Reusable procedure",
+      "Use on new case",
+      "Revise from evidence"
+    ],
+    "labels": [
+      "Observed miss",
+      "Trigger + steps",
+      "Check transfer",
+      "Keep learning"
+    ],
+    "example": "A proposed fix-and-verify skill requires reproduction, a cause, a fix, observed evidence and remaining uncertainty. Codex/Hermes can use the pattern once adapted to the actual repository and current tooling. This course does not install it.",
+    "code": "// Proposed workflow contract\nreproduce();\nexplainCause();\nmakeBoundedFix();\nverifyAgainstRequirement();\nreportEvidenceAndUncertainty();",
+    "exercise": "Write the trigger and one required artifact for a ‘fix-and-verify’ skill.",
+    "hint": "Use the repeated mistake as the trigger. Decide what evidence would catch it.",
+    "transfer": "Which part of the skill could become a compiler, lint or behavioral check?",
+    "source": "Interview 1:00:35–1:04:42; talk 26:43–30:35; pstack distinction in sources.md",
+    "kind": "Core",
+    "file": "16-skills-from-real-corrections.md"
+  },
+  {
+    "id": "17",
+    "group": "Reliable orchestration",
+    "title": "Human judgment and irreversible actions",
+    "goal": "Measure trust while keeping effect boundaries explicit.",
+    "analogy": "A practice kitchen can remake a failed dish. Serving someone with a severe allergy requires a different decision boundary.",
+    "predict": "Would passing every test make a mistaken live transfer reversible?",
+    "idea": "Tests and proofs improve evidence but do not undo losses. Humans sample outputs, review design and improve the process. Measure interventions, rework and useful verified changes. A self-reported PR count includes maintenance and does not establish product impact or safety.",
+    "nodes": [
+      "Evidence",
+      "Human review",
+      "Authorized effect",
+      "Outcome tracking"
+    ],
+    "labels": [
+      "What passed + gaps",
+      "Judgment",
+      "Separate decision",
+      "Interventions / rework"
+    ],
+    "example": "Use fake or local transaction fixtures for this course. A verified UI change can still require separate authorization for any real signing or submission. Track which corrections you repeatedly supply, then improve the environment.",
+    "code": "const reviewRecord = {\n  expectedBehaviorObserved: true,\n  humanInterventions: ['added unknown outcome case'],\n  remainingUncertainty: ['real network behavior untested']\n};",
+    "exercise": "Name a metric that would show your workload improving as agents help you.",
+    "hint": "Count something you experience, such as repeated corrections or reopened bugs.",
+    "transfer": "What additional decision is needed between simulation evidence and real submission?",
+    "source": "Interview 49:34–59:26; talk PR claims are self-reported",
+    "kind": "Core",
+    "file": "17-human-judgment-and-irreversible-actions.md"
+  },
+  {
+    "id": "18",
+    "group": "Your small capstone",
+    "title": "One reliable worker",
+    "goal": "Combine the ideas into one reviewable, observable experiment.",
+    "analogy": "Before opening a second kitchen, demonstrate that one kitchen can reliably handle an order and recover from a problem.",
+    "predict": "Which one small UI or transaction bug would you choose as a safe first experiment, and why?",
+    "idea": "Choose one reproducible bug in a fake or local environment. Specify behavior, reproduce it, propose a bounded fix, collect evidence and record interventions. Strengthen one recurring weak boundary. Expand orchestration only when the worker is dependable.",
+    "nodes": [
+      "One bug",
+      "Behavior + fixture",
+      "Reproduce / verify",
+      "Record interventions",
+      "One stronger boundary"
+    ],
+    "labels": [
+      "Bounded scope",
+      "Observable target",
+      "Before + after",
+      "Human corrections",
+      "Type / check / tool / skill"
+    ],
+    "example": "Capstone scenario: a failed mock transfer displays Success and erases 0.01. Your packet includes the expected failed banner, retained input, reproduction, proposed correction, success/failed/unknown checks, evidence and limits. Planning is enough initially. Real code execution belongs to a separately requested learning exercise.",
+    "code": "type EvidencePacket = {\n  requirement: string; before: string; after: string;\n  checks: string[]; interventions: string[];\n  uncertainty: string[]; nextConstraint: string;\n};",
+    "exercise": "Draft a short evidence packet for the failed mock transfer. Explain your next constraint.",
+    "hint": "Use ordinary language first. No syntax memorization or production repository changes are required.",
+    "transfer": "A later screenshot looks right but your unknown-outcome check fails. What can you honestly claim?",
+    "source": "Our course adaptation of the three talks; no implementation or production change claimed",
+    "kind": "Capstone",
+    "file": "18-one-reliable-worker.md"
+  }
+]

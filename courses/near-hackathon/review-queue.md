@@ -10,4 +10,4 @@
 - [ ] Explain back: what an intent is, who solvers are, why it beats manual bridging.
 - [ ] Explain back: Intents/1Click vs Chain Signatures — when each fits (swap outcome vs specific program call like Meteora).
 - [ ] Explain back: MPC nodes, key shares, and why one hacked node can't forge a signature (threshold t-of-n).
-- [ ] Explain back: what your NEAR account sends the MPC signer (payload + path; answer was supplied by tutor, not yet shown), and why the Solana address is derived from NEAR account + path.
+- [ ] Explain back: what your NEAR account sends the MPC signer (payload + path; answer was supplied by tutor, not yet shown), and why the Solana address is derived from NEAR account + path. (still open after 2026-11-07 topic switches and repo housekeeping)
