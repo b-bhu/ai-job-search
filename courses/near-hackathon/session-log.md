@@ -65,3 +65,12 @@ Side inventory of saved learning tracks (no NEAR teaching). Resume point unchang
 
 ## 2026-11-07 (3)
 Housekeeping: synced course records to remote and added root CURRENT-FOCUS.md. No teaching. Note: the account actually created after bibhu.testnet was taken is not confirmed in these notes. Resume point unchanged.
+
+## 2026-11-08
+Resumed foundation project, no coding. Explained signing request in plain English: NEAR call carries Solana message + path/signing scheme, signed with NEAR access key; MPC returns Solana signature, not execution. Clarified serialized Solana message, not arbitrary hash. Pending prediction: has SOL moved after receiving the signature but before Solana broadcast? No evidence recorded yet.
+
+## 2026-11-08 (2) — conceptual detour
+Asked if NEAR is "privacy by default". Explained: the site has no such claim; Track 03 "Privacy & Private AI — Private by design" (TEE, NEAR AI Cloud). NEAR L1 txs/state are public like Solana; Chain Signatures hide key custody (key shares distributed, no single node normally holds the full key — correcting earlier "no private key exists"), not the transfer; NEAR AI Cloud private inference runs in TEEs with attestation (docs.near.ai/cloud/private-inference). Taught, not learned; no exercise. Pending question unchanged: after MPC signature returns, before broadcast, has SOL moved?
+
+## 2026-11-09
+Bibhu summarized Solana/EVM/NEAR models in his own words. Corrections: Solana programs are stateless and data lives in separate accounts listed in the tx; EVM contracts keep code + storage together; NEAR is closer to EVM (one contract per account, own storage) plus named accounts, multiple keys with limited permissions, async cross-contract calls, sharding. Key misconception fixed: NEAR doesn't execute on other chains; it signs and the target chain executes. AI is a separate layer. Asked teach-back: which chain moves the SOL and what NEAR contributes. Earlier open questions (has SOL moved before broadcast; what Solana Explorer sees) fold into this one.

@@ -11,3 +11,6 @@
 - [ ] Explain back: Intents/1Click vs Chain Signatures — when each fits (swap outcome vs specific program call like Meteora).
 - [ ] Explain back: MPC nodes, key shares, and why one hacked node can't forge a signature (threshold t-of-n).
 - [ ] Explain back: what your NEAR account sends the MPC signer (payload + path; answer was supplied by tutor, not yet shown), and why the Solana address is derived from NEAR account + path. (still open after 2026-11-07 topic switches and repo housekeeping)
+- [ ] Current prediction (2026-11-08): after the MPC signature returns but before broadcasting the Solana transaction, has SOL moved? Distinguish authorization/signing from execution.
+- [ ] Explain back (taught 2026-11-08, not shown): what is public on NEAR/Solana vs what TEE private inference hides; Chain Signatures = key custody, not transaction privacy.
+- [ ] Explain back (2026-11-09): Solana stateless programs + separate accounts vs EVM/NEAR contract-owned storage; NEAR signs, the target chain executes.
