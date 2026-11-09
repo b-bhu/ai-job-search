@@ -20,3 +20,7 @@ Resumed NEAR. Explained two separate transactions: authenticated NEAR call reque
 
 ## Current checkpoint — 2026-11-09
 Compared account models (Solana / EVM / NEAR). Pending teach-back: when our NEAR account sends devnet SOL, which chain moves the SOL and what NEAR contributes. Not marked learned.
+
+### Checkpoint 2026-11-09 21:33 IST
+- Next after the foundation: a privacy module (Confidential Intents for Solana USDC; mainnet only or dry-run).
+- Pending: teach-back on which chain moves the SOL and what NEAR contributes. Then foundation step 1: derive the Solana address, plain English first.

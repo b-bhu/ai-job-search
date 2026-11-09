@@ -14,3 +14,5 @@
 - [ ] Current prediction (2026-11-08): after the MPC signature returns but before broadcasting the Solana transaction, has SOL moved? Distinguish authorization/signing from execution.
 - [ ] Explain back (taught 2026-11-08, not shown): what is public on NEAR/Solana vs what TEE private inference hides; Chain Signatures = key custody, not transaction privacy.
 - [ ] Explain back (2026-11-09): Solana stateless programs + separate accounts vs EVM/NEAR contract-owned storage; NEAR signs, the target chain executes.
+- [ ] What Confidential Intents hides (the sender-to-receiver link) vs what stays public (recipient and amount on Solana); why a TEE alone doesn't make a payment private. (introduced 2026-11-09, not yet shown)
+- [ ] NEAR named accounts: unique, the name is the account, and the owner controls its sub-accounts. (explained 2026-11-09, not yet shown)

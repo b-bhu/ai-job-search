@@ -74,3 +74,15 @@ Asked if NEAR is "privacy by default". Explained: the site has no such claim; Tr
 
 ## 2026-11-09
 Bibhu summarized Solana/EVM/NEAR models in his own words. Corrections: Solana programs are stateless and data lives in separate accounts listed in the tx; EVM contracts keep code + storage together; NEAR is closer to EVM (one contract per account, own storage) plus named accounts, multiple keys with limited permissions, async cross-contract calls, sharding. Key misconception fixed: NEAR doesn't execute on other chains; it signs and the target chain executes. AI is a separate layer. Asked teach-back: which chain moves the SOL and what NEAR contributes. Earlier open questions (has SOL moved before broadcast; what Solana Explorer sees) fold into this one.
+
+## 2026-11-09 (evening): names and private USDC
+- Asked whether `bibhu-dev.testnet` is unique, like an email address. Answered: yes. The name *is* the account (balance, keys, contract), and only the owner can create sub-accounts under it, like `x.bibhu-dev.testnet`.
+- Real interest: send Solana USDC privately. Research findings (verified 9 Nov 2026):
+  - NEAR Confidential Intents (1Click `confidentiality: basic/advanced`) hides the sender-to-receiver *link*.
+  - The recipient and amount are still public on Solana.
+  - It relies on trust in the private shard and secure hardware (TEE).
+  - There is NO Intents testnet (hackathon FAQ Q-007), so it needs tiny mainnet amounts or `dry: true` quotes.
+  - TEEs and NEAR AI Cloud hide logic, not payments.
+  - Token-2022 confidential transfers don't apply to Circle USDC, which uses the classic SPL token program.
+- Decision (Bibhu): finish the Chain Signatures devnet foundation first, then privacy.
+- Still pending: the teach-back on which chain moves the SOL and what NEAR contributes.
